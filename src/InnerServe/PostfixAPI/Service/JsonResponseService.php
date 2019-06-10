@@ -1,13 +1,16 @@
 <?php
 
 namespace InnerServe\PostfixAPI\Service;
+use Symfony\Component\HttpFoundation\JsonResponse;
 
 class JsonResponseService {
 	public function ok($data) {
-		return json_encode(array('success' => true, 'error' => null, 'data' => $data));
+		$response = new JsonResponse();
+		return$response->setData(array('success' => true, 'error' => null, 'data' => $data));
 	}
 
 	public function error($error, $data = null) {
-		return json_encode(array('success' => false, 'error' => $error, 'data' => $data));	
+		$response = new JsonResponse();
+		return$response->setData(array('success' => false, 'error' => $error, 'data' => $data));
 	}
 }
